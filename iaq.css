@@ -1,0 +1,470 @@
+.iaq {
+  --iaq-text: currentColor;
+  --iaq-muted: color-mix(in srgb, currentColor 60%, transparent);
+  --iaq-rule: color-mix(in srgb, currentColor 15%, transparent);
+  --iaq-accent: currentColor;
+  --iaq-focus: currentColor;
+  --iaq-radius: 0;
+  --iaq-gap: 1rem;
+  --iaq-duration: 220ms;
+
+  color: var(--iaq-text);
+}
+
+.iaq__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.iaq__row + .iaq__row {
+  border-top: 1px solid var(--iaq-rule);
+}
+
+.iaq__row--ask {
+  border-top: 1px solid var(--iaq-rule);
+}
+
+.iaq__heading {
+  margin: 0;
+  font: inherit;
+}
+
+.iaq__question {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--iaq-gap);
+  width: 100%;
+  padding: var(--iaq-gap) 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.iaq__question:focus-visible {
+  outline: 2px solid var(--iaq-focus);
+  outline-offset: 2px;
+}
+
+.iaq__question-main {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  min-width: 0;
+}
+
+.iaq__question-text {
+  max-width: 60ch;
+}
+
+.iaq__marker {
+  position: relative;
+  flex: 0 0 auto;
+  width: 0.75em;
+  height: 0.75em;
+  translate: 0 0.1em;
+}
+
+.iaq__marker::before,
+.iaq__marker::after {
+  content: '';
+  position: absolute;
+  inset: 50% 0 auto 0;
+  height: 1px;
+  background: var(--iaq-accent);
+  transition: rotate var(--iaq-duration) ease;
+}
+
+.iaq__marker::after {
+  rotate: 90deg;
+}
+
+.iaq__question[aria-expanded='true'] .iaq__marker::after {
+  rotate: 0deg;
+}
+
+.iaq__panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows var(--iaq-duration) ease;
+}
+
+.iaq__panel[data-open] {
+  grid-template-rows: 1fr;
+}
+
+.iaq__panel-inner {
+  overflow: hidden;
+}
+
+.iaq__answer {
+  margin: 0;
+  padding-bottom: var(--iaq-gap);
+  max-width: 68ch;
+  white-space: pre-wrap;
+}
+
+.iaq__panel[data-status='error'] .iaq__answer {
+  color: var(--iaq-muted);
+}
+
+.iaq__caret {
+  display: inline-block;
+  width: 0.5em;
+  height: 1em;
+  translate: 0 0.15em;
+  background: var(--iaq-accent);
+  animation: iaq-blink 1s steps(2, start) infinite;
+}
+
+@keyframes iaq-blink {
+  to {
+    opacity: 0;
+  }
+}
+
+.iaq__form {
+  padding-bottom: var(--iaq-gap);
+}
+
+.iaq__field {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.iaq__input {
+  flex: 1 1 auto;
+  min-width: 0;
+  padding: 0.5em 0.75em;
+  border: 1px solid var(--iaq-rule);
+  border-radius: var(--iaq-radius);
+  background: none;
+  font: inherit;
+  color: inherit;
+}
+
+.iaq__input:focus-visible,
+.iaq__submit:focus-visible {
+  outline: 2px solid var(--iaq-focus);
+  outline-offset: 2px;
+}
+
+.iaq__submit {
+  flex: 0 0 auto;
+  padding: 0.5em 1.25em;
+  border: 1px solid var(--iaq-accent);
+  border-radius: var(--iaq-radius);
+  background: none;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+
+.iaq__submit[disabled] {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.iaq__ask-field {
+  display: flex;
+  align-items: baseline;
+}
+
+.iaq__ask-input {
+  flex: 1 1 auto;
+  min-width: 0;
+  border: 0;
+  padding: 0;
+  background: none;
+  font: inherit;
+  color: inherit;
+}
+
+.iaq__ask-input::placeholder {
+  color: var(--iaq-muted);
+  opacity: 1;
+}
+
+.iaq__ask-input:focus-visible {
+  outline: none;
+}
+
+.iaq__ask-caret {
+  display: inline-block;
+  flex: 0 0 auto;
+  width: 2px;
+  height: 1em;
+  margin-right: 4px;
+  translate: 0 0.15em;
+  background: var(--iaq-muted);
+  animation: iaq-blink 1s steps(2, start) infinite;
+}
+
+.iaq__ask-caret[data-hidden] {
+  visibility: hidden;
+}
+
+.iaq__ask-hint {
+  margin: 0.35em 0 0;
+  font-size: 0.8em;
+  color: var(--iaq-muted);
+}
+
+.iaq__ask-error {
+  margin: 0.35em 0 0;
+  font-size: 0.8em;
+  color: var(--iaq-muted);
+}
+
+.iaq__ask-submit {
+  flex: 0 0 auto;
+  margin-left: 0.75rem;
+  padding: 0.4em 1em;
+  border: 1px solid var(--iaq-accent);
+  border-radius: var(--iaq-radius);
+  background: none;
+  font: inherit;
+  font-size: 0.875em;
+  color: inherit;
+  cursor: pointer;
+}
+
+.iaq__ask-submit[disabled] {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.iaq__ask-submit:focus-visible {
+  outline: 2px solid var(--iaq-focus);
+  outline-offset: 2px;
+}
+
+.iaq__ask-form {
+  border-radius: var(--iaq-radius);
+  background: var(--iaq-row-bg, transparent);
+  padding: var(--iaq-gap) 0;
+}
+
+
+
+
+.iaq.iaq--stylistic {
+  --iaq-text: #f4f4f5;
+  --iaq-muted: rgba(244, 244, 245, 0.56);
+  --iaq-accent: #f4f4f5;
+  --iaq-focus: #f4f4f5;
+  --iaq-radius: 20px;
+  --iaq-gap: 1.1rem;
+  --iaq-row-bg: #131418;
+  --iaq-spot-a: #1cbfa6;
+  --iaq-spot-b: #5a4977;
+}
+
+.iaq.iaq--stylistic .iaq__list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.875rem;
+}
+
+.iaq.iaq--stylistic .iaq__row,
+.iaq.iaq--stylistic .iaq__row + .iaq__row,
+.iaq.iaq--stylistic .iaq__row--ask {
+  border-top: none;
+}
+
+.iaq.iaq--stylistic .iaq__row {
+  position: relative;
+  background: var(--iaq-row-bg);
+  border-radius: var(--iaq-radius);
+  overflow: hidden;
+}
+
+.iaq.iaq--stylistic .iaq__row::before,
+.iaq.iaq--stylistic .iaq__row::after {
+  content: '';
+  position: absolute;
+  width: 55%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  filter: blur(28px);
+  opacity: 0;
+  mix-blend-mode: screen;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.iaq.iaq--stylistic .iaq__row::before {
+  top: -25%;
+  left: -20%;
+  background: radial-gradient(circle, var(--iaq-spot-a) 0%, var(--iaq-spot-a) 40%, transparent 75%);
+}
+
+.iaq.iaq--stylistic .iaq__row::after {
+  bottom: -25%;
+  right: -20%;
+  background: radial-gradient(circle, var(--iaq-spot-b) 0%, var(--iaq-spot-b) 40%, transparent 75%);
+}
+
+.iaq.iaq--stylistic .iaq__row[data-open]::before {
+  animation: iaq-spotlight-tl 900ms ease forwards;
+}
+
+.iaq.iaq--stylistic .iaq__row[data-open]::after {
+  animation: iaq-spotlight-br 900ms ease forwards;
+}
+
+.iaq.iaq--stylistic .iaq__row.thinking::before {
+  animation: iaq-spotlight-think-tl 1.6s ease-in-out infinite;
+}
+
+.iaq.iaq--stylistic .iaq__row.thinking::after {
+  animation: iaq-spotlight-think-br 1.6s ease-in-out infinite;
+}
+
+@keyframes iaq-spotlight-think-tl {
+  0%,
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  50% {
+    opacity: 1;
+    transform: translateX(145%);
+  }
+}
+
+@keyframes iaq-spotlight-think-br {
+  0%,
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  50% {
+    opacity: 1;
+    transform: translateX(-145%);
+  }
+}
+
+@keyframes iaq-spotlight-tl {
+  0% {
+    opacity: 0;
+    transform: translateX(0);
+  }
+  20% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(145%);
+  }
+}
+
+@keyframes iaq-spotlight-br {
+  0% {
+    opacity: 0;
+    transform: translateX(0);
+  }
+  20% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(-145%);
+  }
+}
+
+.iaq.iaq--stylistic .iaq__question,
+.iaq.iaq--stylistic .iaq__panel {
+  position: relative;
+  z-index: 1;
+}
+
+.iaq.iaq--stylistic .iaq__question {
+  padding: 1.1rem 1.5rem;
+}
+
+.iaq.iaq--stylistic .iaq__question-main {
+  gap: 0.875rem;
+}
+
+.iaq.iaq--stylistic .iaq__icon {
+  display: inline-flex;
+  flex: 0 0 auto;
+  color: var(--iaq-muted);
+}
+
+.iaq.iaq--stylistic .iaq__icon svg {
+  width: 1.25em;
+  height: 1.25em;
+}
+
+.iaq.iaq--stylistic .iaq__marker {
+  width: 1em;
+  height: 1em;
+}
+
+.iaq.iaq--stylistic .iaq__marker::before,
+.iaq.iaq--stylistic .iaq__marker::after {
+  height: 2px;
+  border-radius: 1px;
+}
+
+.iaq.iaq--stylistic .iaq__panel-inner {
+  padding: 0 1.5rem;
+}
+
+.iaq.iaq--stylistic .iaq__answer {
+  padding-bottom: 1.1rem;
+  color: var(--iaq-muted);
+}
+
+.iaq.iaq--stylistic .iaq__ask-form {
+  padding: 1.1rem 1.5rem;
+}
+
+.iaq__label {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.iaq__status {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .iaq__panel,
+  .iaq__marker::before,
+  .iaq__marker::after {
+    transition-duration: 1ms;
+  }
+
+  .iaq__caret,
+  .iaq__ask-caret,
+  .iaq__row::before,
+  .iaq__row::after {
+    animation: none;
+  }
+}
