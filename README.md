@@ -2,6 +2,9 @@
 # (IFQs) Infinitely Asked Questions ♾️
 
 A FAQ Block, that just goes on and on and on. ♾️
+
+<img width="864" height="718" alt="Recording 2026-09-21 224454" src="https://github.com/user-attachments/assets/f4fda610-533e-4463-8796-10648bdc838b" />
+
 ## Install
 
 ```bash
