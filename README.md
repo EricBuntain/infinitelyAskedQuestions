@@ -42,30 +42,6 @@ const faqs = [
 export function Faq() {
   return <InfinitelyAskedQuestions items={faqs} className="iaq--stylistic" />;
 }
-
-## Usage
-
-```tsx
-import { InfinitelyAskedQuestions } from './src/InfinitelyAskedQuestions';
-import './src/iaq.css';
-
-const faqs = [
-  {
-    id: 'grossing',
-    question: 'What's the highest-grossing horror movie?',
-    answer: 'It (2017), at roughly $701 million worldwide. Adjusted for inflation the picture changes a lot: The Exorcist and Jaws both outperform it in real terms.',
-    icon: <ClockIcon />, // optional, rendered before the question text
-  },
-  {
-    id: 'conjuring',
-    question: 'What is The Conjuring Universe, exactly?',
-    answer: 'A shared horror franchise built around Ed and Lorraine Warren, the real-life paranormal investigators played by Patrick Wilson and Vera Farmiga',
-  },
-];
-
-export function Faq() {
-  return <InfinitelyAskedQuestions items={faqs} className="iaq--stylistic" />;
-}
 ```
 
 `iaq--stylistic` is a look shipped in `iaq.css`: dark rounded cards, icons, animated spotlights. Leave `className` off for a plain accordion matching the fixed rows exactly, or write your own class to style it from scratch.
