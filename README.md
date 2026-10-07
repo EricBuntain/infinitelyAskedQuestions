@@ -21,7 +21,7 @@ ANTHROPIC_API_KEY=sk-ant-...
 Then put your project's facts in `api/context.ts`. That string is the only thing the model is allowed to answer from.
 ## Usage
 
-```tsx
+```
 import { InfinitelyAskedQuestions } from './src/InfinitelyAskedQuestions';
 import './src/iaq.css';
 
@@ -42,9 +42,6 @@ const faqs = [
 export function Faq() {
   return <InfinitelyAskedQuestions items={faqs} className="iaq--stylistic" />;
 }
-```![status](https://img.shields.io/badge/status-working-black)
-
-thing the model is allowed to answer from.
 
 ## Usage
 
